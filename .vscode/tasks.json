@@ -1,0 +1,34 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Demo: Preview Restore",
+      "type": "process",
+      "command": "bash",
+      "args": ["${workspaceFolder}/scripts/restore-demo.sh", "--preview"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    },
+    {
+      "label": "Demo: Restore Baseline",
+      "type": "process",
+      "command": "bash",
+      "args": [
+        "${workspaceFolder}/scripts/restore-demo.sh",
+        "--apply",
+        "${input:confirmDemoRestore}"
+      ],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": []
+    }
+  ],
+  "inputs": [
+    {
+      "id": "confirmDemoRestore",
+      "type": "pickString",
+      "description": "Replace tracked demo files and staged edits with the baseline? No commit or push is made.",
+      "options": ["CANCEL", "RESTORE"],
+      "default": "CANCEL"
+    }
+  ]
+}
